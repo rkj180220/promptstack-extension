@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "PromptStack",
+  "version": "0.1.0",
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "permissions": ["storage", "scripting", "activeTab"],
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://www.chatgpt.com/*",
+    "https://www.perplexity.ai/*",
+    "https://github.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://www.chatgpt.com/*",
+        "https://www.perplexity.ai/*",
+        "https://github.com/*"
+      ],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
